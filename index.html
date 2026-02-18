@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; overflow: hidden; width: 100vw; height: 100vh; touch-action: none; }
+        @keyframes rain { 0%{border-color:#f00} 33%{border-color:#0f0} 66%{border-color:#00f} 100%{border-color:#f00} }
+        .rb { animation: rain 1.5s linear infinite; border: 2px solid #0f0; }
+        
+        #lg { position: fixed; inset: 0; background: #000; z-index: 3000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .bx { padding: 15px; border-radius: 12px; text-align: center; width: 85%; background: #0a0a0a; border: 1px solid #0f0; }
+        #ks { width: 90%; height: 35px; border: 1px solid #0f0; background: #000; margin: 10px auto; line-height: 35px; font-size: 20px; color: #0f0; }
+        
+        #kb { width: 100%; background: #000; border-top: 1px solid #0f0; padding: 5px 0; margin-top: 10px; }
+        .row { display: flex; justify-content: center; margin-bottom: 2px; }
+        .k { background: #000; color: #0f0; border: 1px solid #0f0; margin: 1px; padding: 12px 0; width: 8.5vw; border-radius: 4px; text-align: center; font-size: 11px; font-weight: bold; }
+
+        #cir { position: fixed; top: 15%; left: 5%; width: 55px; height: 55px; background: #000; color: #0f0; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 2000; font-size: 30px; touch-action: none; box-shadow: 0 0 10px #0f0; }
+        
+        #mu { position: fixed; top: 10%; left: 5%; width: 92%; background: rgba(0,0,0,0.98); display: none; flex-direction: column; z-index: 2001; border-radius: 10px; overflow: hidden; border: 1px solid #0f0; touch-action: none; }
+        #hd { background: #0f0; color: #000; padding: 10px; font-weight: bold; display: flex; justify-content: space-between; touch-action: none; }
+        #mn { display: flex; height: 65vh; }
+        #sd { width: 32%; border-right: 1px solid #0f0; padding: 4px; overflow-y: auto; background: #050505; }
+        #ct { flex-grow: 1; padding: 6px; overflow-y: auto; }
+        
+        .bt { background: #111; color: #0f0; border: 1px solid #333; padding: 10px 1px; margin-bottom: 5px; font-size: 8px; text-align: center; border-radius: 4px; }
+        .bt.ac { background: #0f0; color: #000; font-weight: bold; }
+        .pg { display: none; } .pg.ac { display: block; }
+        button { background: #000; color: #0f0; border: 1px solid #0f0; padding: 10px; width: 100%; margin: 3px 0; font-size: 9px; font-weight: bold; border-radius: 4px; text-align: left; }
+        button:active { background: #0f0; color: #000; }
+    </style>
+</head>
+<body>
+
+    <div id="lg">
+        <div class="bx rb">
+            <h2 style="margin:0; font-size: 14px;">SUPREME V4</h2>
+            <div id="ks"></div>
+            <button id="vb">LOGIN</button>
+        </div>
+        <div id="kb">
+            <div class="row">
+                <div class="k ch">Q</div><div class="k ch">W</div><div class="k ch">E</div><div class="k ch">R</div><div class="k ch">T</div>
+                <div class="k ch">Y</div><div class="k ch">U</div><div class="k ch">I</div><div class="k ch">O</div><div class="k ch">P</div>
+            </div>
+            <div class="row">
+                <div class="k ch">A</div><div class="k ch">S</div><div class="k ch">D</div><div class="k ch">F</div><div class="k ch">G</div>
+                <div class="k ch">H</div><div class="k ch">J</div><div class="k ch">K</div><div class="k ch">L</div>
+            </div>
+            <div class="row">
+                <div class="k" id="cp" style="width:18vw">UPPER</div>
+                <div class="k ch">Z</div><div class="k ch">X</div><div class="k ch">C</div><div class="k ch">V</div>
+                <div class="k ch">B</div><div class="k ch">N</div><div class="k ch">M</div>
+                <div class="k" id="dl" style="width:18vw">DEL</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cir" class="rb">‡</div>
+
+    <div id="mu" class="rb">
+        <div id="hd">SUPREME MASTER <span id="cx">[×]</span></div>
+        <div id="mn">
+            <div id="sd">
+                <div class="bt ac" data-p="p1">Player</div>
+                <div class="bt" data-p="p2">Movement</div>
+                <div class="bt" data-p="p3">Combat</div>
+                <div class="bt" data-p="p4">World/Obj</div>
+                <div class="bt" data-p="p5">Monsters</div>
+                <div class="bt" data-p="p6">Server</div>
+                <div class="bt" data-p="p7">System</div>
+            </div>
+            <div id="ct">
+                <div id="p1" class="pg ac">
+                    <button data-c="GodMode">GodMode</button>
+                    <button data-c="GodModeTank">GodModeTank</button>
+                    <button data-c="AntiKick">AntiKick</button>
+                    <button data-c="AntiBan">AntiBan</button>
+                    <button data-c="UnlCoins">Unlimited Coins</button>
+                    <button data-c="UnlLevel">Unlimited Level</button>
+                    <button data-c="UnlockAll">Unlock All</button>
+                </div>
+                <div id="p2" class="pg">
+                    <button data-c="Fly">Fly</button>
+                    <button data-c="FlySpeed">FlySpeed</button>
+                    <button data-c="Speedhack">Speedhack</button>
+                    <button data-c="Teleport">Teleport</button>
+                    <button data-c="TP_Pos">Teleport To Pos</button>
+                </div>
+                <div id="p3" class="pg">
+                    <button data-c="MassKill">MassKill</button>
+                    <button data-c="Telekill">Telekill</button>
+                    <button data-c="SpamChat">SpamChat</button>
+                </div>
+                <div id="p4" class="pg">
+                    <button style="color:cyan" data-c="Polar">PolarModsObjectSight</button>
+                    <button data-c="HackObj">Hack Object I See</button>
+                    <button data-c="DestObj">Destroy Object I See</button>
+                    <button data-c="SpawnObj">SpawnObject</button>
+                </div>
+                <div id="p5" class="pg">
+                    <button data-c="TallChic">SpawnTallChicken</button>
+                    <button data-c="Huggy">SpawnHuggyWuggy</button>
+                    <button data-c="ColorHuggy">ColorHuggyWuggy</button>
+                    <button data-c="MonstSpd">Speedhack Monsters</button>
+                    <button data-c="MonstGod">GodMode Monsters</button>
+                    <button data-c="MonstDmg">HighDamageAttack</button>
+                </div>
+                <div id="p6" class="pg">
+                    <button style="color:red" data-c="Crash">CRASH SERVER</button>
+                    <button data-c="KickAll">KICK ALL</button>
+                    <button data-c="GlitchPlayers">Glitch all players</button>
+                    <button data-c="ControlPlayers">Control all Players</button>
+                </div>
+                <div id="p7" class="pg">
+                    <button data-c="SavePref">Save All Settings</button>
+                    <button onclick="location.reload()">Reload UI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var s = ""; var cap = true;
+            var valid = ["TGVnYWN5", "TG90dXM=", "U3VwcmVtZQ=="]; 
+
+            // Keyboard - Visual and Input Sync
+            document.querySelectorAll('.k.ch').forEach(el => {
+                el.onclick = function() {
+                    s += this.innerText;
+                    document.getElementById('ks').innerText = "*".repeat(s.length);
+                };
+            });
+
+            document.getElementById('cp').onclick = function() {
+                cap = !cap;
+                this.innerText = cap ? "UPPER" : "lower";
+                document.querySelectorAll('.k.ch').forEach(key => {
+                    key.innerText = cap ? key.innerText.toUpperCase() : key.innerText.toLowerCase();
+                });
+            };
+
+            document.getElementById('dl').onclick = function() {
+                s = s.slice(0, -1);
+                document.getElementById('ks').innerText = "*".repeat(s.length);
+            };
+
+            document.getElementById('vb').onclick = function() {
+                if(valid.includes(btoa(s))) {
+                    document.getElementById('lg').style.display='none';
+                    document.getElementById('cir').style.display='flex';
+                } else { alert("ACCESS DENIED"); s=""; document.getElementById('ks').innerText=""; }
+            };
+
+            // Toggle UI
+            function tglMenu() {
+                var m = document.getElementById('mu');
+                var c = document.getElementById('cir');
+                var v = m.style.display === 'flex';
+                m.style.display = v ? 'none' : 'flex';
+                c.style.display = v ? 'flex' : 'none';
+            }
+            document.getElementById('cir').onclick = tglMenu;
+            document.getElementById('cx').onclick = tglMenu;
+
+            // Sidebar Tabs
+            document.querySelectorAll('.bt').forEach(el => {
+                el.onclick = function() {
+                    document.querySelectorAll('.pg').forEach(p => p.classList.remove('ac'));
+                    document.querySelectorAll('.bt').forEach(b => b.classList.remove('ac'));
+                    document.getElementById(this.dataset.p).classList.add('ac');
+                    this.classList.add('ac');
+                };
+            });
+
+            // Feature Commands
+            document.querySelectorAll('button[data-c]').forEach(el => {
+                el.onclick = function() {
+                    let cmd = this.dataset.c;
+                    alert("ACTIVATE: " + cmd);
+                    console.log("[SupremeV4] Running: " + cmd);
+                };
+            });
+
+            // Touch Dragging (Safe Version)
+            function makeDraggable(handle, container) {
+                handle.addEventListener('touchstart', function(e) {
+                    var touch = e.touches[0];
+                    var offsetX = touch.clientX - container.offsetLeft;
+                    var offsetY = touch.clientY - container.offsetTop;
+
+                    function move(e) {
+                        if (e.cancelable) e.preventDefault();
+                        var t = e.touches[0];
+                        container.style.left = (t.clientX - offsetX) + 'px';
+                        container.style.top = (t.clientY - offsetY) + 'px';
+                    }
+
+                    function stop() {
+                        document.removeEventListener('touchmove', move);
+                        document.removeEventListener('touchend', stop);
+                    }
+
+                    document.addEventListener('touchmove', move, { passive: false });
+                    document.addEventListener('touchend', stop);
+                }, { passive: true });
+            }
+
+            makeDraggable(document.getElementById('hd'), document.getElementById('mu'));
+            makeDraggable(document.getElementById('cir'), document.getElementById('cir'));
+        })();
+    </script>
+</body>
+</html>
